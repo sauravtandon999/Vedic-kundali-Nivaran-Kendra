@@ -1283,386 +1283,392 @@ document.getElementById("bookingForm")
 </script>
 
 
-<!-- LO SHU GRID + NUMEROLOGY + GEMSTONE TOOL -->
-<section id="numerology-tool" class="numerology-section">
-  <div class="num-container">
-    <div class="num-heading">
-      <span>✦ VEDIC NUMEROLOGY ✦</span>
-      <h2>Lo Shu Grid & Gemstone Guide</h2>
-      <p>Enter your name and date of birth to view your numerology report.</p>
-    </div>
+<!-- COMPLETE LO SHU + NUMEROLOGY GEMSTONE GUIDE -->
+<section id="numerology-gemstone-tool">
+  <style>
+    #numerology-gemstone-tool {
+      max-width: 950px;
+      margin: 35px auto;
+      padding: 22px;
+      border: 1px solid #d5b568;
+      border-radius: 16px;
+      background: #fffaf0;
+      color: #39281f;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+    }
+    #numerology-gemstone-tool * { box-sizing: border-box; }
+    #numerology-gemstone-tool h2,
+    #numerology-gemstone-tool h3 { color: #741b25; }
+    #numerology-gemstone-tool input,
+    #numerology-gemstone-tool select {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0 15px;
+      border: 1px solid #cbbd9c;
+      border-radius: 8px;
+      background: white;
+      font-size: 15px;
+    }
+    #numerology-gemstone-tool button {
+      background: #741b25;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      padding: 13px 18px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    #numerology-gemstone-tool .ls-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      max-width: 360px;
+      margin: 15px auto;
+    }
+    #numerology-gemstone-tool .ls-cell {
+      text-align: center;
+      padding: 15px 5px;
+      min-height: 72px;
+      border-radius: 9px;
+      background: #f1e1bd;
+      border: 1px solid #d5b568;
+    }
+    #numerology-gemstone-tool .gem-card {
+      padding: 16px;
+      margin: 13px 0;
+      border: 1px solid #e5d6b5;
+      border-radius: 10px;
+      background: white;
+    }
+    #numerology-gemstone-tool .gem-card h4 {
+      color: #741b25;
+      margin: 0 0 9px;
+      font-size: 17px;
+    }
+    #numerology-gemstone-tool .tag {
+      display: inline-block;
+      background: #f4ead5;
+      padding: 5px 8px;
+      margin: 3px 4px 5px 0;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+    #numerology-gemstone-tool .note {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #675647;
+    }
+  </style>
 
-    <form id="numForm" class="num-form">
-      <label for="numName">Full Name *</label>
-      <input id="numName" type="text" maxlength="80"
-             placeholder="Enter your full name" required>
+  <h2 style="text-align:center;">💎 Lo Shu Grid & Numerology Gemstone Guide</h2>
+  <p style="text-align:center;line-height:1.7;">
+    Apni birth details enter karke numerology numbers, Lo Shu Grid aur
+    traditional gemstone associations dekhein.
+  </p>
 
-      <label for="numDob">Date of Birth *</label>
-      <input id="numDob" type="date" required>
+  <label for="ng-dob"><b>Date of Birth</b></label>
+  <input type="date" id="ng-dob" required>
 
-      <button type="submit" class="num-button">Generate My Report</button>
-      <p class="num-note">Your report is calculated in your browser.</p>
-    </form>
+  <label for="ng-purpose"><b>Aap kis purpose ke liye gemstone dekh rahe hain?</b></label>
+  <select id="ng-purpose">
+    <option value="all">All gemstones and general guidance</option>
+    <option value="career">Career and studies</option>
+    <option value="business">Business and communication</option>
+    <option value="peace">Peace and emotional balance</option>
+    <option value="confidence">Confidence and leadership</option>
+    <option value="creativity">Creativity and relationships</option>
+    <option value="protection">Traditional spiritual guidance</option>
+  </select>
 
-    <div id="numResult" hidden>
-      <h3 id="numGreeting"></h3>
-      <p id="numDate"></p>
+  <button type="button" id="ng-generate" style="width:100%;">
+    Calculate My Numerology
+  </button>
 
-      <div class="num-cards">
-        <div class="num-card">
-          <span>Birth Number</span>
-          <strong id="birthNumber"></strong>
-          <small id="birthMeaning"></small>
-        </div>
-        <div class="num-card">
-          <span>Life Path Number</span>
-          <strong id="lifeNumber"></strong>
-          <small id="lifeMeaning"></small>
-        </div>
-        <div class="num-card">
-          <span>Name Number</span>
-          <strong id="nameNumber"></strong>
-          <small id="nameMeaning"></small>
-        </div>
-      </div>
+  <div id="ng-output" aria-live="polite" style="margin-top:22px;"></div>
 
-      <h3 class="num-subtitle">Your Lo Shu Grid</h3>
-      <p class="num-note">The grid shows how often each digit from 1 to 9 appears in your date of birth. Zero is not placed in the grid.</p>
-      <div id="loShuGrid" class="lo-grid"></div>
-      <div id="digitReport" class="num-report"></div>
+  <script>
+  (function () {
+    const root = document.getElementById("numerology-gemstone-tool");
+    const dateInput = root.querySelector("#ng-dob");
+    const purposeInput = root.querySelector("#ng-purpose");
+    const output = root.querySelector("#ng-output");
 
-      <div class="gem-box">
-        <span class="gem-label">TRADITIONAL NUMEROLOGY ASSOCIATION</span>
-        <h3>💎 Gemstone Guide</h3>
-        <h2 id="gemName"></h2>
-        <p id="gemReason"></p>
-        <p class="num-disclaimer">
-          This is a general traditional numerology association, not a
-          personalized astrological prescription. A birth date alone cannot
-          establish whether a gemstone is suitable for you.
-        </p>
-        <a id="gemWhatsApp" class="num-button whatsapp-button"
-           href="#" target="_blank" rel="noopener">
-          Unlock Consultation — ₹149
-        </a>
-      </div>
+    // Traditional associations are educational, not verified predictions.
+    const stones = [
+      {
+        name: "Ruby (Manik)", planet: "Sun / Surya",
+        numbers: [1], purposes: ["confidence"],
+        detail: "Vedic astrology traditions associate Ruby with Surya.",
+        traditional: "Leadership, visibility and self-confidence.",
+        caution: "Personal astrological suitability cannot be established by numerology alone."
+      },
+      {
+        name: "Pearl (Moti)", planet: "Moon / Chandra",
+        numbers: [2], purposes: ["peace"],
+        detail: "Traditionally associated with Chandra.",
+        traditional: "Calmness, emotional balance and sensitivity.",
+        caution: "Not a treatment for anxiety, sleep problems or other health conditions."
+      },
+      {
+        name: "Yellow Sapphire (Pukhraj)", planet: "Jupiter / Brihaspati",
+        numbers: [3], purposes: ["career", "business"],
+        detail: "Traditionally associated with Brihaspati.",
+        traditional: "Wisdom, learning, guidance and knowledge.",
+        caution: "A birth number alone cannot confirm whether this stone is suitable."
+      },
+      {
+        name: "Hessonite (Gomed)", planet: "Rahu",
+        numbers: [4], purposes: ["protection"],
+        detail: "Associated with Rahu in some Vedic astrology traditions.",
+        traditional: "Used in certain astrological practices after chart assessment.",
+        caution: "Do not self-prescribe based only on a missing Lo Shu number."
+      },
+      {
+        name: "Emerald (Panna)", planet: "Mercury / Budh",
+        numbers: [5], purposes: ["career", "business"],
+        detail: "Traditionally associated with Budh.",
+        traditional: "Communication, learning and analytical thinking.",
+        caution: "There is no established evidence that wearing Emerald improves these abilities."
+      },
+      {
+        name: "Diamond (Heera)", planet: "Venus / Shukra",
+        numbers: [6], purposes: ["creativity"],
+        detail: "Traditionally associated with Shukra.",
+        traditional: "Beauty, refinement, comfort and creativity.",
+        caution: "Diamond can be costly; verify quality and price independently."
+      },
+      {
+        name: "White Sapphire", planet: "Venus / Shukra",
+        numbers: [6], purposes: ["creativity"],
+        detail: "Sometimes used as a traditional alternative to Diamond.",
+        traditional: "Beauty and creative expression.",
+        caution: "It is not guaranteed to provide any personal or financial benefit."
+      },
+      {
+        name: "Opal", planet: "Venus in some traditions",
+        numbers: [6], purposes: ["creativity"],
+        detail: "Used in some modern gemstone and astrology practices.",
+        traditional: "Creativity, style and artistic expression.",
+        caution: "Its astrological associations vary; it is not a universal substitute for Diamond."
+      },
+      {
+        name: "Cat's Eye (Lehsunia)", planet: "Ketu",
+        numbers: [7], purposes: ["protection"],
+        detail: "Associated with Ketu in some Vedic astrology traditions.",
+        traditional: "Spiritual reflection and certain traditional remedies.",
+        caution: "Requires individual chart assessment within the relevant tradition."
+      },
+      {
+        name: "Blue Sapphire (Neelam)", planet: "Saturn / Shani",
+        numbers: [8], purposes: ["protection"],
+        detail: "Traditionally associated with Shani.",
+        traditional: "Discipline, patience and responsibility as symbolic themes.",
+        caution: "Do not recommend solely from a Lo Shu Grid or life path number."
+      },
+      {
+        name: "Red Coral (Moonga)", planet: "Mars / Mangal",
+        numbers: [9], purposes: ["confidence"],
+        detail: "Traditionally associated with Mangal.",
+        traditional: "Courage, initiative and energy as symbolic themes.",
+        caution: "Numerology alone cannot establish personal astrological suitability."
+      },
+      {
+        name: "Amethyst (Jamunia)", planet: "Associations vary",
+        numbers: [2, 7], purposes: ["peace", "protection"],
+        detail: "Used in various modern crystal traditions; associations differ.",
+        traditional: "Meditation, reflection and calmness as symbolic themes.",
+        caution: "Not a scientifically established treatment for emotional or medical problems."
+      },
+      {
+        name: "Garnet", planet: "Associations vary",
+        numbers: [1, 9], purposes: ["confidence"],
+        detail: "A gemstone used in jewellery and some modern crystal practices.",
+        traditional: "Symbolically linked with motivation and vitality.",
+        caution: "No reliable personal prescription can be inferred from a number alone."
+      },
+      {
+        name: "Citrine (Sunela)", planet: "Associations vary",
+        numbers: [3, 5], purposes: ["business", "career"],
+        detail: "Common in modern crystal and numerology-related practices.",
+        traditional: "Symbolically linked with optimism and creativity.",
+        caution: "It is not a proven method for attracting wealth or guaranteeing business success."
+      },
+      {
+        name: "Moonstone", planet: "Moon symbolism in some traditions",
+        numbers: [2, 7], purposes: ["peace"],
+        detail: "Associated with lunar symbolism in some crystal traditions.",
+        traditional: "Intuition and reflection as symbolic themes.",
+        caution: "Associations vary by tradition and are not scientific findings."
+      },
+      {
+        name: "Turquoise (Firoza)", planet: "Associations vary",
+        numbers: [3, 5, 9], purposes: ["protection", "confidence"],
+        detail: "Used across several cultural and spiritual traditions.",
+        traditional: "Often symbolises protection and positive expression.",
+        caution: "These symbolic associations do not establish personal suitability."
+      },
+      {
+        name: "Peridot (Zabarjad)", planet: "Associations vary",
+        numbers: [5, 6], purposes: ["business", "creativity"],
+        detail: "A jewellery gemstone with differing modern spiritual associations.",
+        traditional: "Sometimes linked with renewal and growth.",
+        caution: "Not a standard universal substitute for an astrological gemstone."
+      },
+      {
+        name: "Aquamarine", planet: "Associations vary",
+        numbers: [2, 5], purposes: ["peace", "business"],
+        detail: "Used in modern crystal practices and jewellery.",
+        traditional: "Symbolically associated with calm expression and clarity.",
+        caution: "These claims are traditional beliefs, not verified effects."
+      },
+      {
+        name: "Jade", planet: "Associations vary",
+        numbers: [4, 6, 8], purposes: ["business", "peace"],
+        detail: "A culturally significant gemstone in multiple traditions.",
+        traditional: "Often symbolises harmony and prosperity.",
+        caution: "It cannot guarantee wealth, health or success."
+      },
+      {
+        name: "Lapis Lazuli", planet: "Associations vary",
+        numbers: [3, 7], purposes: ["career", "peace"],
+        detail: "Used in historical jewellery and modern spiritual practices.",
+        traditional: "Symbolically associated with wisdom and reflection.",
+        caution: "No established evidence supports a numerology-based prescription."
+      }
+    ];
 
-      <div class="num-locked">
-        <h3>🔒 Detailed Consultation</h3>
-        <p>Your consultation can cover:</p>
-        <ul>
-          <li>Detailed Lo Shu Grid interpretation</li>
-          <li>Missing and repeated birth-date digits</li>
-          <li>Birth Number, Life Path and Name Number overview</li>
-          <li>Traditional gemstone associations and their limitations</li>
-          <li>Your personal questions and guidance</li>
-        </ul>
-        <a id="detailWhatsApp" class="num-button"
-           href="#" target="_blank" rel="noopener">
-          WhatsApp Consultation — ₹149
-        </a>
-      </div>
-    </div>
+    function reduceToDigit(value) {
+      let n = Number(value);
+      while (n > 9) {
+        n = String(n).split("").reduce((sum, d) => sum + Number(d), 0);
+      }
+      return n;
+    }
 
-    <p class="num-disclaimer">
-      Numerology and gemstone associations are traditional beliefs, not
-      scientifically validated predictions. Results are not guaranteed.
-      Confirm the consultation scope and price before booking.
-    </p>
-  </div>
+    function sumDigits(value) {
+      return String(value).replace(/\D/g, "")
+        .split("").reduce((sum, d) => sum + Number(d), 0);
+    }
+
+    function addText(parent, tag, text, css) {
+      const element = document.createElement(tag);
+      element.textContent = text;
+      if (css) element.style.cssText = css;
+      parent.appendChild(element);
+      return element;
+    }
+
+    function render() {
+      output.replaceChildren();
+
+      if (!dateInput.value) {
+        addText(output, "p", "Please apni date of birth select karein.");
+        return;
+      }
+
+      const [year, month, day] = dateInput.value.split("-").map(Number);
+      const date = new Date(Date.UTC(year, month - 1, day));
+      if (date.getUTCFullYear() !== year ||
+          date.getUTCMonth() !== month - 1 ||
+          date.getUTCDate() !== day) {
+        addText(output, "p", "Please ek valid date select karein.");
+        return;
+      }
+
+      const birthNumber = reduceToDigit(day);
+      const lifePathNumber = reduceToDigit(sumDigits(dateInput.value));
+      const digits = dateInput.value.replace(/-/g, "")
+        .split("").map(Number).filter(n => n >= 1 && n <= 9);
+      const counts = {};
+      for (let n = 1; n <= 9; n++) counts[n] = 0;
+      digits.forEach(n => counts[n]++);
+
+      addText(output, "h3", "Aapke Numerology Results");
+      addText(output, "p", "Birth Number: " + birthNumber,
+        "font-size:17px;font-weight:bold;");
+      addText(output, "p", "Life Path Number: " + lifePathNumber,
+        "font-size:17px;font-weight:bold;");
+
+      addText(output, "h3", "Aapka Lo Shu Grid");
+      const grid = document.createElement("div");
+      grid.className = "ls-grid";
+      [4, 9, 2, 3, 5, 7, 8, 1, 6].forEach(n => {
+        const cell = document.createElement("div");
+        cell.className = "ls-cell";
+        addText(cell, "strong", String(n), "font-size:22px;");
+        addText(cell, "div",
+          counts[n] ? "Present: " + counts[n] : "Missing",
+          "font-size:12px;margin-top:7px;");
+        grid.appendChild(cell);
+      });
+      output.appendChild(grid);
+
+      const purpose = purposeInput.value;
+      const candidates = stones.map(stone => {
+        let score = 0;
+        if (stone.numbers.includes(birthNumber)) score += 2;
+        if (stone.numbers.includes(lifePathNumber)) score += 2;
+        if (stone.numbers.some(n => counts[n] > 0)) score += 1;
+        if (purpose !== "all" && stone.purposes.includes(purpose)) score += 1;
+        return { ...stone, score };
+      }).filter(stone => purpose === "all" || stone.purposes.includes(purpose))
+        .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+
+      addText(output, "h3", "Gemstone Suggestions & Details",
+        "margin-top:24px;");
+
+      addText(output, "p",
+        "Suggestions ko Birth Number, Life Path Number aur traditional number associations ke saath arrange kiya gaya hai. Yeh ranking ek educational rule hai, validated astrological prescription nahi.",
+        "line-height:1.7;");
+
+      candidates.forEach((stone, index) => {
+        const card = document.createElement("article");
+        card.className = "gem-card";
+
+        addText(card, "h4",
+          (index + 1) + ". " + stone.name);
+
+        addText(card, "p", "Traditional association: " + stone.planet,
+          "margin:7px 0;");
+
+        addText(card, "p", "Number associations: " +
+          stone.numbers.join(", "), "margin:7px 0;");
+
+        addText(card, "p", stone.detail, "line-height:1.6;");
+        addText(card, "p", "Traditional symbolism: " + stone.traditional,
+          "line-height:1.6;");
+
+        addText(card, "p", "Important: " + stone.caution,
+          "font-size:13px;line-height:1.7;color:#725b48;");
+
+        output.appendChild(card);
+      });
+
+      addText(output, "p",
+        "Important: Lo Shu Grid mein missing number hone ka matlab yeh nahi ki us number se juda gemstone pehenna chahiye. Vedic astrology mein gemstone selection ke rules numerology se alag ho sakte hain. Mehenga gemstone kharidne se pehle independent expert advice aur seller ki authenticity verify karein.",
+        "margin-top:20px;font-size:13px;line-height:1.8;color:#675647;");
+
+      const wa = document.createElement("a");
+      wa.href = "https://wa.me/918709224478?text=" +
+        encodeURIComponent(
+          "Namaste, mujhe numerology aur traditional gemstone guidance chahiye. Birth Number: " +
+          birthNumber + ", Life Path Number: " + lifePathNumber
+        );
+      wa.target = "_blank";
+      wa.rel = "noopener noreferrer";
+      wa.textContent = "WhatsApp Consultation";
+      wa.style.cssText =
+        "display:block;text-align:center;padding:14px;background:#237448;color:white;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:18px;";
+      output.appendChild(wa);
+    }
+
+    root.querySelector("#ng-generate").addEventListener("click", render);
+  })();
+  </script>
 </section>
 
-<style>
-.numerology-section {
-  padding: 55px 16px;
-  background: #fff8e9;
-  color: #35242a;
-  font-family: Arial, sans-serif;
-}
-.num-container { max-width: 780px; margin: auto; }
-.num-heading { text-align: center; margin-bottom: 28px; }
-.num-heading span, .gem-label {
-  color: #a67728;
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  font-weight: bold;
-}
-.num-heading h2 {
-  color: #4b1019;
-  font-size: clamp(27px, 5vw, 38px);
-  margin: 12px 0;
-}
-.num-heading p, .num-note, .num-disclaimer {
-  color: #76656a;
-  line-height: 1.7;
-}
-.num-form, .num-card, .gem-box, .num-locked {
-  background: white;
-  border: 1px solid #eadbbd;
-  border-radius: 12px;
-  padding: 22px;
-  margin-bottom: 18px;
-}
-.num-form label { display: block; margin: 12px 0 6px; font-weight: bold; }
-.num-form input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 13px;
-  border: 1px solid #d9c8b1;
-  border-radius: 7px;
-  font-size: 16px;
-}
-.num-button {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 14px;
-  margin-top: 18px;
-  background: #4b1019;
-  color: white;
-  text-align: center;
-  border: 0;
-  border-radius: 7px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-.num-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 20px 0;
-}
-.num-card { margin: 0; text-align: center; padding: 16px 8px; }
-.num-card span, .num-card strong, .num-card small { display: block; }
-.num-card span { font-size: 12px; color: #76656a; }
-.num-card strong { font-size: 32px; color: #9c6c1e; margin: 7px 0; }
-.num-card small { font-size: 12px; line-height: 1.5; }
-.num-subtitle { color: #4b1019; margin: 25px 0 10px; }
-.lo-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  max-width: 390px;
-  margin: 20px auto;
-}
-.lo-cell {
-  min-height: 90px;
-  background: white;
-  border: 1px solid #d9ad58;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.lo-cell b { font-size: 24px; color: #4b1019; }
-.lo-cell span { font-size: 12px; margin-top: 5px; color: #76656a; }
-.lo-cell em { font-size: 13px; font-weight: bold; color: #9c6c1e; }
-.num-report {
-  padding: 16px;
-  border-radius: 8px;
-  background: #f4ead6;
-  line-height: 1.8;
-  font-size: 14px;
-}
-.num-report p { margin: 5px 0; }
-.gem-box { margin-top: 25px; border-color: #d9ad58; background: #fffdf7; }
-.gem-box h3 { color: #4b1019; margin: 12px 0; }
-.gem-box h2 { color: #9c6c1e; margin: 12px 0; }
-.num-disclaimer { font-size: 12px; margin-top: 16px; }
-.whatsapp-button { background: #218838; }
-.num-locked ul { padding-left: 22px; line-height: 1.9; }
-@media(max-width:520px) {
-  .num-cards { grid-template-columns: 1fr; }
-  .num-card { padding: 17px; }
-  .num-form, .gem-box, .num-locked { padding: 17px; }
-  .lo-cell { min-height: 76px; }
-}
-</style>
-
-<script>
-(function () {
-  const form = document.getElementById("numForm");
-  const result = document.getElementById("numResult");
-
-  // One common Pythagorean name-number convention.
-  function getNameNumber(name) {
-    let total = 0;
-    const letters = name.toUpperCase().replace(/[^A-Z]/g, "");
-    for (const letter of letters) {
-      total += ((letter.charCodeAt(0) - 65) % 9) + 1;
-    }
-    return total;
-  }
-
-  function reduceNumber(number) {
-    while (number > 9) {
-      number = String(number).split("")
-        .reduce((sum, digit) => sum + Number(digit), 0);
-    }
-    return number;
-  }
-
-  function sumDigits(value) {
-    return String(value).replace(/\D/g, "").split("")
-      .reduce((sum, digit) => sum + Number(digit), 0);
-  }
-
-  function show(id, value) {
-    document.getElementById(id).textContent = value;
-  }
-
-  const meanings = {
-    1: "Independence and initiative",
-    2: "Cooperation and sensitivity",
-    3: "Creativity and expression",
-    4: "Structure and practicality",
-    5: "Adaptability and change",
-    6: "Responsibility and harmony",
-    7: "Reflection and learning",
-    8: "Ambition and organization",
-    9: "Compassion and completion"
-  };
-
-  // Traditional associations only; not a personal prescription.
-  const gemstones = {
-    1: ["Ruby (Manik)", "Traditionally associated with the Sun."],
-    2: ["Pearl (Moti)", "Traditionally associated with the Moon."],
-    3: ["Yellow Sapphire (Pukhraj)", "Traditionally associated with Jupiter."],
-    4: ["Hessonite (Gomed)", "Associated with Rahu in some traditions."],
-    5: ["Emerald (Panna)", "Traditionally associated with Mercury."],
-    6: ["Opal or Diamond", "Traditionally associated with Venus."],
-    7: ["Cat's Eye (Lehsunia)", "Associated with Ketu in some traditions."],
-    8: ["Blue Sapphire (Neelam)", "Traditionally associated with Saturn; do not select on DOB alone."],
-    9: ["Red Coral (Moonga)", "Traditionally associated with Mars."]
-  };
-
-  // Traditional Lo Shu grid arrangement.
-  const gridOrder = [4, 9, 2, 3, 5, 7, 8, 1, 6];
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const name = document.getElementById("numName").value.trim();
-    const dob = document.getElementById("numDob").value;
-
-    if (!name || !dob) {
-      alert("Please enter your name and date of birth.");
-      return;
-    }
-
-    const [year, month, day] = dob.split("-").map(Number);
-    const checkDate = new Date(Date.UTC(year, month - 1, day));
-
-    if (
-      checkDate.getUTCFullYear() !== year ||
-      checkDate.getUTCMonth() !== month - 1 ||
-      checkDate.getUTCDate() !== day
-    ) {
-      alert("Please enter a valid date of birth.");
-      return;
-    }
-
-    if (new Date(Date.UTC(year, month - 1, day)) > new Date()) {
-      alert("Date of birth cannot be in the future.");
-      return;
-    }
-
-    const birthNumber = reduceNumber(day);
-    const lifeNumber = reduceNumber(sumDigits(dob));
-    const nameNumber = reduceNumber(getNameNumber(name));
-
-    show("numGreeting", "Namaste, " + name + "!");
-    show("numDate", "Date of Birth: " + dob);
-    show("birthNumber", birthNumber);
-    show("birthMeaning", meanings[birthNumber]);
-    show("lifeNumber", lifeNumber);
-    show("lifeMeaning", meanings[lifeNumber]);
-    show("nameNumber", nameNumber);
-    show("nameMeaning", meanings[nameNumber]);
-
-    const counts = {};
-    for (let digit = 1; digit <= 9; digit++) counts[digit] = 0;
-
-    for (const character of dob.replace(/\D/g, "")) {
-      const digit = Number(character);
-      if (digit >= 1 && digit <= 9) counts[digit]++;
-    }
-
-    const grid = document.getElementById("loShuGrid");
-    grid.replaceChildren();
-
-    gridOrder.forEach(number => {
-      const cell = document.createElement("div");
-      cell.className = "lo-cell";
-
-      const digit = document.createElement("b");
-      digit.textContent = number;
-
-      const count = document.createElement("span");
-      count.textContent = counts[number] === 0
-        ? "Not present" : "Count: " + counts[number];
-
-      const repeats = document.createElement("em");
-      repeats.textContent = counts[number] > 1
-        ? Array(counts[number]).fill(number).join(" ") : "";
-
-      cell.append(digit, count, repeats);
-      grid.appendChild(cell);
-    });
-
-    const missing = [];
-    const repeated = [];
-
-    for (let digit = 1; digit <= 9; digit++) {
-      if (counts[digit] === 0) missing.push(digit);
-      if (counts[digit] > 1) repeated.push(digit + " × " + counts[digit]);
-    }
-
-    const report = document.getElementById("digitReport");
-    report.replaceChildren();
-
-    const missingText = document.createElement("p");
-    missingText.textContent = "Digits not present: " +
-      (missing.join(", ") || "None");
-
-    const repeatedText = document.createElement("p");
-    repeatedText.textContent = "Repeated digits: " +
-      (repeated.join(", ") || "None");
-
-    const note = document.createElement("p");
-    note.textContent =
-      "These are digit counts, not proven measures of personality or future outcomes.";
-
-    report.append(missingText, repeatedText, note);
-
-    const gem = gemstones[birthNumber];
-    show("gemName", gem[0]);
-    show("gemReason", gem[1] +
-      " This general association does not confirm personal suitability.");
-
-    const message =
-      "Namaste Vedic Kundali Nivaran Kendra. I would like to enquire about the Rs. 149 consultation." +
-      "\nName: " + name +
-      "\nDOB: " + dob +
-      "\nBirth Number: " + birthNumber +
-      "\nLife Path Number: " + lifeNumber +
-      "\nName Number: " + nameNumber +
-      "\nPlease explain my numerology report and traditional gemstone associations.";
-
-    const whatsappURL =
-      "https://wa.me/918709224478?text=" + encodeURIComponent(message);
-
-    document.getElementById("gemWhatsApp").href = whatsappURL;
-    document.getElementById("detailWhatsApp").href = whatsappURL;
-
-    result.hidden = false;
-    result.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-})();
-</script>
-<!-- END LO SHU GRID + NUMEROLOGY TOOL -->
 
 </body>
 </html>
