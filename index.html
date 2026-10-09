@@ -1,1 +1,1286 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vedic Kundali Nivaran Kendra | Online Astrology Consultation</title>
+
+<meta name="description" content="Vedic Kundali Nivaran Kendra offers online Vedic astrology consultation, Kundali analysis, Lal Kitab remedies, marriage matching, Vastu guidance and gemstone consultation starting at ₹149. Located at Gudari Bazar, near Hanuman Mandir, Samastipur.">
+
+<meta name="theme-color" content="#4b1019">
+
+<style>
+:root {
+  --maroon: #4b1019;
+  --dark: #26080e;
+  --gold: #d9ad58;
+  --cream: #fff8e9;
+  --text: #35242a;
+  --muted: #76656a;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: #fffdf8;
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  width: min(1140px, 92%);
+  margin: auto;
+}
+
+.topbar {
+  background: var(--dark);
+  color: #f6dfad;
+  text-align: center;
+  padding: 9px 12px;
+  font-size: 13px;
+  letter-spacing: .4px;
+}
+
+header {
+  background: rgba(255,253,248,.97);
+  border-bottom: 1px solid #eadbbd;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 49px;
+  height: 49px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--gold);
+  background: var(--maroon);
+  border: 2px solid var(--gold);
+  font-size: 28px;
+}
+
+.brand-name {
+  color: var(--maroon);
+  font-family: Georgia, serif;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.brand-name small {
+  display: block;
+  color: #9c7028;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 1.8px;
+  margin-top: 4px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: #a67623;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 7px;
+  padding: 13px 20px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: .2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #2d0b0e;
+}
+
+.btn-outline {
+  border-color: var(--gold);
+  color: white;
+  background: transparent;
+}
+
+.btn-maroon {
+  background: var(--maroon);
+  color: white;
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 80% 35%, #78332d 0%, transparent 42%),
+    linear-gradient(120deg, #24070c, #4b1019 60%, #351017);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "ॐ";
+  position: absolute;
+  right: -15px;
+  top: 0;
+  font-size: clamp(240px, 38vw, 470px);
+  line-height: 1;
+  color: rgba(222,176,85,.055);
+  pointer-events: none;
+}
+
+.hero-content {
+  min-height: 570px;
+  padding: 76px 0;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  align-items: center;
+  gap: 50px;
+  position: relative;
+}
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.12;
+  margin: 18px 0;
+  font-weight: 500;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero p {
+  color: #eadbd5;
+  max-width: 570px;
+  font-size: 16px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.trust-points {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  font-size: 12px;
+  color: #f5dfb7;
+}
+
+.offer-card {
+  border: 1px solid #cda14f;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #fff8e9, #f0d9a8);
+  color: var(--maroon);
+  padding: 34px 28px;
+  text-align: center;
+  box-shadow: 0 20px 60px #16040866;
+  max-width: 390px;
+  width: 100%;
+  justify-self: end;
+}
+
+.offer-symbol {
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 17px;
+  border: 2px solid #bc9144;
+  border-radius: 50%;
+  font-size: 52px;
+  font-family: Georgia, serif;
+  color: #9b6c21;
+}
+
+.offer-card h2 {
+  font-family: Georgia, serif;
+  font-size: 25px;
+  line-height: 1.3;
+}
+
+.price {
+  font-family: Georgia, serif;
+  font-size: 56px;
+  font-weight: bold;
+  color: #9c6c1e;
+  line-height: 1.5;
+}
+
+.offer-card p {
+  color: #62434a;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.offer-card .btn {
+  width: 100%;
+}
+
+.section {
+  padding: 82px 0;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 42px;
+}
+
+.section-heading .eyebrow {
+  color: #a67728;
+}
+
+.section-heading h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 4vw, 43px);
+  color: var(--maroon);
+  line-height: 1.2;
+  margin: 10px 0 14px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.service-card {
+  background: white;
+  border: 1px solid #eee2ca;
+  padding: 28px 24px;
+  border-radius: 13px;
+  transition: .25s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: #d4af69;
+  box-shadow: 0 15px 35px #4b10190d;
+}
+
+.service-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #f8eed7;
+  color: var(--maroon);
+  font-size: 27px;
+  margin-bottom: 17px;
+}
+
+.service-card h3 {
+  color: var(--maroon);
+  font-family: Georgia, serif;
+  font-size: 20px;
+  margin-bottom: 9px;
+}
+
+.service-card p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 17px;
+}
+
+.service-link {
+  color: #956719;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.price-strip {
+  background: var(--cream);
+  border-top: 1px solid #eee0c3;
+  border-bottom: 1px solid #eee0c3;
+}
+
+.price-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 43px 0;
+}
+
+.price-content h2 {
+  font-family: Georgia, serif;
+  color: var(--maroon);
+  font-size: clamp(25px, 3vw, 35px);
+}
+
+.price-content p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 7px;
+}
+
+.price-badge {
+  text-align: center;
+  flex-shrink: 0;
+  background: var(--maroon);
+  color: white;
+  border-radius: 12px;
+  padding: 18px 30px;
+  border: 1px solid var(--gold);
+}
+
+.price-badge strong {
+  color: var(--gold);
+  font-size: 36px;
+  display: block;
+  line-height: 1.3;
+}
+
+.price-badge span {
+  font-size: 12px;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.process-card {
+  text-align: center;
+  padding: 26px;
+}
+
+.step {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  background: var(--maroon);
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  font-family: Georgia, serif;
+  font-size: 23px;
+}
+
+.process-card h3 {
+  color: var(--maroon);
+  margin-bottom: 8px;
+}
+
+.process-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.cta {
+  background: linear-gradient(120deg, #310910, #5b1720);
+  padding: 58px 0;
+  color: white;
+  text-align: center;
+}
+
+.cta h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 4vw, 43px);
+  margin-bottom: 12px;
+}
+
+.cta p {
+  color: #eadbd5;
+  margin-bottom: 25px;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: auto;
+}
+
+details {
+  padding: 20px 4px;
+  border-bottom: 1px solid #eadfc9;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--maroon);
+  font-weight: bold;
+}
+
+details p {
+  padding-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.contact-card {
+  padding: 30px;
+  border: 1px solid #e9ddc5;
+  border-radius: 14px;
+  background: white;
+}
+
+.contact-card h3 {
+  font-family: Georgia, serif;
+  color: var(--maroon);
+  font-size: 23px;
+  margin-bottom: 16px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 13px;
+  margin: 17px 0;
+  align-items: flex-start;
+}
+
+.contact-item b {
+  display: block;
+  color: var(--maroon);
+  font-size: 14px;
+}
+
+.contact-item span {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+footer {
+  background: #21070b;
+  color: #e9d8b7;
+  padding: 42px 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 35px;
+  padding-bottom: 30px;
+}
+
+footer h3 {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  margin-bottom: 13px;
+}
+
+footer p, footer a {
+  color: #d9c8c1;
+  font-size: 13px;
+}
+
+footer a {
+  display: block;
+  margin: 8px 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ffffff20;
+  padding-top: 18px;
+  text-align: center;
+  font-size: 12px;
+  color: #bda8a1;
+}
+
+.disclaimer {
+  font-size: 11px;
+  opacity: .8;
+  margin-top: 13px;
+  max-width: 800px;
+}
+
+.mobile-bar {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a:not(.btn) {
+    display: none;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    padding: 60px 0;
+    gap: 38px;
+  }
+
+  .offer-card {
+    justify-self: start;
+    max-width: 420px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    width: 90%;
+  }
+
+  .topbar {
+    font-size: 11px;
+  }
+
+  .nav {
+    min-height: 68px;
+  }
+
+  .brand-icon {
+    width: 41px;
+    height: 41px;
+    font-size: 24px;
+  }
+
+  .brand-name {
+    font-size: 13px;
+  }
+
+  .brand-name small {
+    font-size: 8px;
+  }
+
+  .nav-links .btn {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .hero-content {
+    min-height: auto;
+    padding: 53px 0;
+  }
+
+  .hero h1 {
+    font-size: 39px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .trust-points {
+    gap: 10px 15px;
+  }
+
+  .offer-card {
+    padding: 28px 22px;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 30px;
+  }
+
+  .services-grid,
+  .process-grid,
+  .contact-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    padding: 24px;
+  }
+
+  .price-content {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 35px 0;
+  }
+
+  .price-badge {
+    width: 100%;
+  }
+
+  .process-card {
+    padding: 18px;
+  }
+
+  .contact-card {
+    padding: 23px;
+  }
+
+  .mobile-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background: white;
+    padding: 10px 12px;
+    box-shadow: 0 -4px 18px #00000015;
+  }
+
+  .mobile-bar .btn {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+
+  body {
+    padding-bottom: 68px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  Online Astrology Consultation Starting at ₹149
+  &nbsp; | &nbsp; Samastipur, Bihar
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="brand">
+      <div class="brand-icon">ॐ</div>
+      <div class="brand-name">
+        Vedic Kundali
+        <br>Nivaran Kendra
+        <small>VEDIC ASTROLOGY & GUIDANCE</small>
+      </div>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#process">How It Works</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-maroon"
+         href="https://wa.me/918709224478?text=Hello%2C%20I%20want%20to%20book%20an%20online%20astrology%20consultation%20for%20Rs.%20149."
+         target="_blank" rel="noopener">
+         Book Consultation
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container hero-content">
+
+    <div>
+      <div class="eyebrow">
+        ✦ Traditional Wisdom • Personal Guidance ✦
+      </div>
+
+      <h1>
+        Discover Clarity<br>
+        Through <span>Vedic Astrology</span>
+      </h1>
+
+      <p>
+        Explore your Kundali, understand traditional planetary
+        interpretations and receive personalized guidance through
+        Vedic Astrology and Lal Kitab principles.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-gold"
+           href="https://wa.me/918709224478?text=Hello%2C%20I%20want%20to%20book%20an%20online%20consultation%20for%20Rs.%20149."
+           target="_blank" rel="noopener">
+          Book Online — ₹149
+        </a>
+
+        <a class="btn btn-outline" href="#services">
+          Explore Our Services →
+        </a>
+      </div>
+
+      <div class="trust-points">
+        <span>✦ Personalized Guidance</span>
+        <span>✦ Online Consultation</span>
+        <span>✦ Traditional Astrology</span>
+      </div>
+    </div>
+
+    <div class="offer-card">
+      <div class="offer-symbol">ॐ</div>
+      <div class="eyebrow" style="color:#98691f">
+        ONLINE CONSULTATION
+      </div>
+      <h2>Begin Your Astrology Journey</h2>
+      <div class="price">₹149</div>
+      <p>
+        Connect with us for Kundali analysis and traditional
+        astrological guidance. Ask about the consultation scope
+        before booking.
+      </p>
+      <a class="btn btn-maroon"
+         href="https://wa.me/918709224478?text=Namaste%2C%20please%20share%20details%20of%20your%20Rs.%20149%20online%20consultation."
+         target="_blank" rel="noopener">
+        WhatsApp to Book
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">Our Expertise</div>
+      <h2>Astrology Services for Your Needs</h2>
+      <p>
+        Discover our range of traditional astrology consultations
+        and spiritual guidance services.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card">
+        <div class="service-icon">☸</div>
+        <h3>Kundali Analysis</h3>
+        <p>
+          Understand your birth chart, planetary positions,
+          houses and traditional astrological interpretations.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Kundali Analysis')">
+          Enquire Now →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">📖</div>
+        <h3>Lal Kitab Remedies</h3>
+        <p>
+          Explore traditional Lal Kitab principles and
+          personalized remedy suggestions.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Lal Kitab Remedies')">
+          Enquire Now →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">♥</div>
+        <h3>Marriage & Kundali Matching</h3>
+        <p>
+          Traditional compatibility analysis, Guna Milan
+          and relationship-related astrological guidance.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Marriage and Kundali Matching')">
+          Enquire Now →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">✦</div>
+        <h3>Career & Business Guidance</h3>
+        <p>
+          Explore traditional astrological perspectives
+          related to career choices and business decisions.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Career and Business Guidance')">
+          Enquire Now →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">☼</div>
+        <h3>Graha Dosh Consultation</h3>
+        <p>
+          Traditional chart analysis related to Mangal Dosh,
+          Shani Sade Sati, Rahu-Ketu and other planetary concerns.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Graha Dosh Consultation')">
+          Enquire Now →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">⌂</div>
+        <h3>Vastu Consultation</h3>
+        <p>
+          Traditional Vastu suggestions for homes, offices,
+          workplaces and property layouts.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Vastu Consultation')">
+          Enquire Now →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">◆</div>
+        <h3>Gemstone Guidance</h3>
+        <p>
+          Explore traditional astrological considerations
+          for gemstone selection based on your birth chart.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Gemstone Guidance')">
+          Enquire Now →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">🪔</div>
+        <h3>Puja & Mantra Guidance</h3>
+        <p>
+          Learn about traditional prayers, mantras,
+          charity and spiritual practices.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Puja and Mantra Guidance')">
+          Enquire Now →
+        </a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">☯</div>
+        <h3>Personal Astrology Guidance</h3>
+        <p>
+          Discuss your concerns and explore relevant
+          traditional astrological perspectives.
+        </p>
+        <a class="service-link" href="#contact"
+           onclick="selectService('Personal Astrology Guidance')">
+          Enquire Now →
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="price-strip">
+  <div class="container price-content">
+    <div>
+      <h2>Online Consultation at ₹149</h2>
+      <p>
+        Connect from anywhere and ask about our consultation
+        process, availability and included services.
+      </p>
+    </div>
+    <div class="price-badge">
+      <strong>₹149</strong>
+      <span>Online Consultation</span>
+      <br><br>
+      <a class="btn btn-gold"
+         href="https://wa.me/918709224478?text=Hello%2C%20I%20am%20interested%20in%20the%20Rs.%20149%20consultation."
+         target="_blank" rel="noopener">
+        Get Started
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">Simple & Convenient</div>
+      <h2>How Online Consultation Works</h2>
+      <p>
+        Contact our centre to understand the booking process
+        and arrange your online consultation.
+      </p>
+    </div>
+
+    <div class="process-grid">
+
+      <div class="process-card">
+        <div class="step">1</div>
+        <h3>Contact Us</h3>
+        <p>
+          Message us on WhatsApp and tell us which
+          astrology service you are interested in.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <div class="step">2</div>
+        <h3>Share Birth Details</h3>
+        <p>
+          If required for your chosen service, share your
+          date, time and place of birth privately.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <div class="step">3</div>
+        <h3>Arrange Consultation</h3>
+        <p>
+          Confirm the price, availability, consultation
+          method and service details before proceeding.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <div class="eyebrow">Your Questions Matter</div>
+    <h2>Looking for Astrological Guidance?</h2>
+    <p>
+      Contact Vedic Kundali Nivaran Kendra to enquire
+      about our online consultation services.
+    </p>
+    <a class="btn btn-gold"
+       href="https://wa.me/918709224478?text=Namaste%2C%20I%20would%20like%20to%20enquire%20about%20your%20astrology%20services."
+       target="_blank" rel="noopener">
+      Chat With Us on WhatsApp
+    </a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">Frequently Asked Questions</div>
+      <h2>How Can We Help You?</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <details>
+        <summary>What is the price of online consultation?</summary>
+        <p>
+          Our advertised online consultation starts at ₹149.
+          Contact us to confirm the scope and details of the
+          selected service.
+        </p>
+      </details>
+
+      <details>
+        <summary>Do you provide online services?</summary>
+        <p>
+          Yes. Contact us by phone or WhatsApp to enquire
+          about online consultation availability and format.
+        </p>
+      </details>
+
+      <details>
+        <summary>What details are needed for Kundali analysis?</summary>
+        <p>
+          Traditionally, the date, time and place of birth
+          are used for Kundali analysis. Requirements may
+          vary depending on the service.
+        </p>
+      </details>
+
+      <details>
+        <summary>Where is your centre located?</summary>
+        <p>
+          Gudari Bazar, near Hanuman Mandir,
+          Samastipur, Bihar.
+        </p>
+      </details>
+
+      <details>
+        <summary>How can I book a consultation?</summary>
+        <p>
+          Use the WhatsApp booking button on this website
+          or call 8709224478 to enquire about availability.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact" style="background:#fbf5e9">
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">Get in Touch</div>
+      <h2>Contact Vedic Kundali Nivaran Kendra</h2>
+      <p>
+        Contact us for service information, pricing
+        and online consultation bookings.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-card">
+        <h3>Contact Information</h3>
+
+        <div class="contact-item">
+          <div class="service-icon">☎</div>
+          <div>
+            <b>Call Us</b>
+            <span>8709224478</span>
+            <a class="service-link" href="tel:+918709224478">
+              Call Now →
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="service-icon">✉</div>
+          <div>
+            <b>WhatsApp Booking</b>
+            <span>Enquire about online consultations</span>
+            <a class="service-link"
+               href="https://wa.me/918709224478"
+               target="_blank" rel="noopener">
+              Message Us →
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="service-icon">⌖</div>
+          <div>
+            <b>Our Address</b>
+            <span>Gudari Bazar, Near Hanuman Mandir,
+              Samastipur, Bihar, India</span>
+            <a class="service-link"
+               href="https://www.google.com/maps/search/?api=1&query=Gudari+Bazar+Near+Hanuman+Mandir+Samastipur+Bihar"
+               target="_blank" rel="noopener">
+              Find on Google Maps →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h3>Book Your Consultation</h3>
+        <p style="font-size:14px;color:#76656a;margin-bottom:20px">
+          Choose the service you want to enquire about.
+          Your selection will open a pre-filled WhatsApp message.
+        </p>
+
+        <form id="bookingForm">
+          <label for="customerName">Your Name</label>
+          <input id="customerName" required
+                 placeholder="Enter your name">
+
+          <label for="serviceSelect">Select a Service</label>
+          <select id="serviceSelect" required>
+            <option value="">Choose a service</option>
+            <option>Kundali Analysis</option>
+            <option>Lal Kitab Remedies</option>
+            <option>Marriage and Kundali Matching</option>
+            <option>Career and Business Guidance</option>
+            <option>Graha Dosh Consultation</option>
+            <option>Vastu Consultation</option>
+            <option>Gemstone Guidance</option>
+            <option>Puja and Mantra Guidance</option>
+            <option>Personal Astrology Guidance</option>
+          </select>
+
+          <label for="customerMessage">Your Question (Optional)</label>
+          <textarea id="customerMessage"
+                    rows="3"
+                    placeholder="How can we help you?"></textarea>
+
+          <button type="submit" class="btn btn-maroon"
+                  style="width:100%;margin-top:20px">
+            Continue on WhatsApp →
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+      <div>
+        <h3>Vedic Kundali Nivaran Kendra</h3>
+        <p>
+          Traditional Vedic Astrology, Kundali Analysis,
+          Lal Kitab Remedies and personalized spiritual guidance.
+        </p>
+        <p class="disclaimer">
+          Astrology is a traditional belief-based practice.
+          Consultations are for informational and spiritual
+          guidance and do not guarantee specific outcomes.
+          For medical, legal or financial decisions, consult
+          the appropriate qualified professional.
+        </p>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <a href="#home">Home</a>
+        <a href="#services">Our Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+
+      <div>
+        <h3>Contact Details</h3>
+        <a href="tel:+918709224478">8709224478</a>
+        <p>Gudari Bazar, Near Hanuman Mandir</p>
+        <p>Samastipur, Bihar, India</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Gudari+Bazar+Near+Hanuman+Mandir+Samastipur+Bihar"
+           target="_blank" rel="noopener">
+          Open Google Maps →
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> Vedic Kundali Nivaran Kendra.
+      All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a class="btn btn-maroon" href="tel:+918709224478">
+    ☎ Call Now
+  </a>
+  <a class="btn btn-gold"
+     href="https://wa.me/918709224478?text=Hello%2C%20I%20want%20to%20book%20an%20online%20consultation."
+     target="_blank" rel="noopener">
+    WhatsApp Booking
+  </a>
+</div>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+function selectService(service) {
+  document.getElementById("serviceSelect").value = service;
+}
+
+document.getElementById("bookingForm")
+  .addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name =
+      document.getElementById("customerName").value.trim();
+
+    const service =
+      document.getElementById("serviceSelect").value;
+
+    const message =
+      document.getElementById("customerMessage").value.trim();
+
+    if (!name || !service) {
+      alert("Please enter your name and select a service.");
+      return;
+    }
+
+    const text =
+      "Namaste Vedic Kundali Nivaran Kendra,%0A%0A" +
+      "My name: " + encodeURIComponent(name) + "%0A" +
+      "Service: " + encodeURIComponent(service) + "%0A" +
+      "Online consultation advertised price: Rs. 149%0A" +
+      "My question: " + encodeURIComponent(message) +
+      "%0A%0APlease share the booking details and confirm the service price.";
+
+    window.open(
+      "https://wa.me/918709224478?text=" + text,
+      "_blank",
+      "noopener"
+    );
+  });
+</script>
+
+</body>
+</html>
