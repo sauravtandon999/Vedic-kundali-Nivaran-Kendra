@@ -1321,6 +1321,43 @@ document.getElementById('kResult').hidden=false;
 </script>
 
 
+<!-- FREE KUNDALI PREVIEW -->
+<section id="free-kundali" style="max-width:650px;margin:40px auto;padding:24px;background:#fff8e9;border:1px solid #d9ad58;border-radius:14px;font-family:Arial;color:#4b1019">
+<h2 style="text-align:center">🔮 Free Janam Kundali</h2>
+<p style="text-align:center">Naam aur Date of Birth bharein.</p>
+<form id="kundaliForm">
+<label>Full Name</label>
+<input id="kName" required placeholder="Apna naam likhein" style="width:100%;padding:12px;margin:8px 0 16px;box-sizing:border-box">
+<label>Date of Birth</label>
+<input id="kDate" type="date" required style="width:100%;padding:12px;margin:8px 0 18px;box-sizing:border-box">
+<button style="width:100%;padding:14px;background:#4b1019;color:white;border:0;border-radius:7px;font-weight:bold">View My Kundali</button>
+</form>
+<div id="kResult" hidden>
+<h3 id="kWelcome"></h3>
+<p id="kDob"></p>
+<p><b>Free Preview:</b></p>
+<div id="kPreview"></div>
+<div style="padding:16px;background:#f1e2c6;border-radius:9px;margin-top:18px">
+<h3>🔒 Unlock Full Kundali Details</h3>
+<p>Lagna, Rashi, Nakshatra, Grah Sthiti, Dasha, Marriage, Career aur detailed Kundali analysis.</p>
+<h2>Consultation: ₹149</h2>
+<a id="kUnlock" style="display:block;text-align:center;background:#218838;color:white;padding:13px;border-radius:7px;text-decoration:none" target="_blank" rel="noopener">Unlock Details on WhatsApp</a>
+</div>
+</div>
+</section>
+<script>
+document.getElementById('kundaliForm').addEventListener('submit',function(e){
+e.preventDefault();
+const n=document.getElementById('kName').value.trim();
+const d=document.getElementById('kDate').value;
+document.getElementById('kWelcome').textContent='Namaste, '+n+'!';
+document.getElementById('kDob').textContent='Date of Birth: '+d;
+document.getElementById('kPreview').innerHTML='<p>1. Name: '+n.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p><p>2. Date of Birth: '+d+'</p><p>3. Detailed planetary analysis</p><p>4. Lagna and Rashi details</p><p>5. Nakshatra analysis</p><p>6. Career and marriage analysis</p><p>7. Dasha and remedies</p><p><b>Baaki detailed report ₹149 consultation par available hai.</b></p>';
+document.getElementById('kUnlock').href='https://wa.me/918709224478?text='+encodeURIComponent('Namaste, mujhe full Kundali consultation chahiye. Name: '+n+', DOB: '+d+'. Consultation fee ₹149.');
+document.getElementById('kResult').hidden=false;
+});
+</script>
+
 
 
 </body>
