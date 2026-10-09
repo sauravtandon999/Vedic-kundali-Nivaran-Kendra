@@ -1282,83 +1282,387 @@ document.getElementById("bookingForm")
   });
 </script>
 
-  
-<!-- FREE KUNDALI PREVIEW -->
-<section id="free-kundali" style="max-width:650px;margin:40px auto;padding:24px;background:#fff8e9;border:1px solid #d9ad58;border-radius:14px;font-family:Arial;color:#4b1019">
-<h2 style="text-align:center">🔮 Free Janam Kundali</h2>
-<p style="text-align:center">Naam aur Date of Birth bharein.</p>
-<form id="kundaliForm">
-<label>Full Name</label>
-<input id="kName" required placeholder="Apna naam likhein" style="width:100%;padding:12px;margin:8px 0 16px;box-sizing:border-box">
-<label>Date of Birth</label>
-<input id="kDate" type="date" required style="width:100%;padding:12px;margin:8px 0 18px;box-sizing:border-box">
-<button style="width:100%;padding:14px;background:#4b1019;color:white;border:0;border-radius:7px;font-weight:bold">View My Kundali</button>
-</form>
-<div id="kResult" hidden>
-<h3 id="kWelcome"></h3>
-<p id="kDob"></p>
-<p><b>Free Preview:</b></p>
-<div id="kPreview"></div>
-<div style="padding:16px;background:#f1e2c6;border-radius:9px;margin-top:18px">
-<h3>🔒 Unlock Full Kundali Details</h3>
-<p>Lagna, Rashi, Nakshatra, Grah Sthiti, Dasha, Marriage, Career aur detailed Kundali analysis.</p>
-<h2>Consultation: ₹149</h2>
-<a id="kUnlock" style="display:block;text-align:center;background:#218838;color:white;padding:13px;border-radius:7px;text-decoration:none" target="_blank" rel="noopener">Unlock Details on WhatsApp</a>
-</div>
-</div>
+
+<!-- LO SHU GRID + NUMEROLOGY + GEMSTONE TOOL -->
+<section id="numerology-tool" class="numerology-section">
+  <div class="num-container">
+    <div class="num-heading">
+      <span>✦ VEDIC NUMEROLOGY ✦</span>
+      <h2>Lo Shu Grid & Gemstone Guide</h2>
+      <p>Enter your name and date of birth to view your numerology report.</p>
+    </div>
+
+    <form id="numForm" class="num-form">
+      <label for="numName">Full Name *</label>
+      <input id="numName" type="text" maxlength="80"
+             placeholder="Enter your full name" required>
+
+      <label for="numDob">Date of Birth *</label>
+      <input id="numDob" type="date" required>
+
+      <button type="submit" class="num-button">Generate My Report</button>
+      <p class="num-note">Your report is calculated in your browser.</p>
+    </form>
+
+    <div id="numResult" hidden>
+      <h3 id="numGreeting"></h3>
+      <p id="numDate"></p>
+
+      <div class="num-cards">
+        <div class="num-card">
+          <span>Birth Number</span>
+          <strong id="birthNumber"></strong>
+          <small id="birthMeaning"></small>
+        </div>
+        <div class="num-card">
+          <span>Life Path Number</span>
+          <strong id="lifeNumber"></strong>
+          <small id="lifeMeaning"></small>
+        </div>
+        <div class="num-card">
+          <span>Name Number</span>
+          <strong id="nameNumber"></strong>
+          <small id="nameMeaning"></small>
+        </div>
+      </div>
+
+      <h3 class="num-subtitle">Your Lo Shu Grid</h3>
+      <p class="num-note">The grid shows how often each digit from 1 to 9 appears in your date of birth. Zero is not placed in the grid.</p>
+      <div id="loShuGrid" class="lo-grid"></div>
+      <div id="digitReport" class="num-report"></div>
+
+      <div class="gem-box">
+        <span class="gem-label">TRADITIONAL NUMEROLOGY ASSOCIATION</span>
+        <h3>💎 Gemstone Guide</h3>
+        <h2 id="gemName"></h2>
+        <p id="gemReason"></p>
+        <p class="num-disclaimer">
+          This is a general traditional numerology association, not a
+          personalized astrological prescription. A birth date alone cannot
+          establish whether a gemstone is suitable for you.
+        </p>
+        <a id="gemWhatsApp" class="num-button whatsapp-button"
+           href="#" target="_blank" rel="noopener">
+          Unlock Consultation — ₹149
+        </a>
+      </div>
+
+      <div class="num-locked">
+        <h3>🔒 Detailed Consultation</h3>
+        <p>Your consultation can cover:</p>
+        <ul>
+          <li>Detailed Lo Shu Grid interpretation</li>
+          <li>Missing and repeated birth-date digits</li>
+          <li>Birth Number, Life Path and Name Number overview</li>
+          <li>Traditional gemstone associations and their limitations</li>
+          <li>Your personal questions and guidance</li>
+        </ul>
+        <a id="detailWhatsApp" class="num-button"
+           href="#" target="_blank" rel="noopener">
+          WhatsApp Consultation — ₹149
+        </a>
+      </div>
+    </div>
+
+    <p class="num-disclaimer">
+      Numerology and gemstone associations are traditional beliefs, not
+      scientifically validated predictions. Results are not guaranteed.
+      Confirm the consultation scope and price before booking.
+    </p>
+  </div>
 </section>
+
+<style>
+.numerology-section {
+  padding: 55px 16px;
+  background: #fff8e9;
+  color: #35242a;
+  font-family: Arial, sans-serif;
+}
+.num-container { max-width: 780px; margin: auto; }
+.num-heading { text-align: center; margin-bottom: 28px; }
+.num-heading span, .gem-label {
+  color: #a67728;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+}
+.num-heading h2 {
+  color: #4b1019;
+  font-size: clamp(27px, 5vw, 38px);
+  margin: 12px 0;
+}
+.num-heading p, .num-note, .num-disclaimer {
+  color: #76656a;
+  line-height: 1.7;
+}
+.num-form, .num-card, .gem-box, .num-locked {
+  background: white;
+  border: 1px solid #eadbbd;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+.num-form label { display: block; margin: 12px 0 6px; font-weight: bold; }
+.num-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #d9c8b1;
+  border-radius: 7px;
+  font-size: 16px;
+}
+.num-button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  margin-top: 18px;
+  background: #4b1019;
+  color: white;
+  text-align: center;
+  border: 0;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.num-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.num-card { margin: 0; text-align: center; padding: 16px 8px; }
+.num-card span, .num-card strong, .num-card small { display: block; }
+.num-card span { font-size: 12px; color: #76656a; }
+.num-card strong { font-size: 32px; color: #9c6c1e; margin: 7px 0; }
+.num-card small { font-size: 12px; line-height: 1.5; }
+.num-subtitle { color: #4b1019; margin: 25px 0 10px; }
+.lo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  max-width: 390px;
+  margin: 20px auto;
+}
+.lo-cell {
+  min-height: 90px;
+  background: white;
+  border: 1px solid #d9ad58;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.lo-cell b { font-size: 24px; color: #4b1019; }
+.lo-cell span { font-size: 12px; margin-top: 5px; color: #76656a; }
+.lo-cell em { font-size: 13px; font-weight: bold; color: #9c6c1e; }
+.num-report {
+  padding: 16px;
+  border-radius: 8px;
+  background: #f4ead6;
+  line-height: 1.8;
+  font-size: 14px;
+}
+.num-report p { margin: 5px 0; }
+.gem-box { margin-top: 25px; border-color: #d9ad58; background: #fffdf7; }
+.gem-box h3 { color: #4b1019; margin: 12px 0; }
+.gem-box h2 { color: #9c6c1e; margin: 12px 0; }
+.num-disclaimer { font-size: 12px; margin-top: 16px; }
+.whatsapp-button { background: #218838; }
+.num-locked ul { padding-left: 22px; line-height: 1.9; }
+@media(max-width:520px) {
+  .num-cards { grid-template-columns: 1fr; }
+  .num-card { padding: 17px; }
+  .num-form, .gem-box, .num-locked { padding: 17px; }
+  .lo-cell { min-height: 76px; }
+}
+</style>
+
 <script>
-document.getElementById('kundaliForm').addEventListener('submit',function(e){
-e.preventDefault();
-const n=document.getElementById('kName').value.trim();
-const d=document.getElementById('kDate').value;
-document.getElementById('kWelcome').textContent='Namaste, '+n+'!';
-document.getElementById('kDob').textContent='Date of Birth: '+d;
-document.getElementById('kPreview').innerHTML='<p>1. Name: '+n.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p><p>2. Date of Birth: '+d+'</p><p>3. Detailed planetary analysis</p><p>4. Lagna and Rashi details</p><p>5. Nakshatra analysis</p><p>6. Career and marriage analysis</p><p>7. Dasha and remedies</p><p><b>Baaki detailed report ₹149 consultation par available hai.</b></p>';
-document.getElementById('kUnlock').href='https://wa.me/918709224478?text='+encodeURIComponent('Namaste, mujhe full Kundali consultation chahiye. Name: '+n+', DOB: '+d+'. Consultation fee ₹149.');
-document.getElementById('kResult').hidden=false;
-});
+(function () {
+  const form = document.getElementById("numForm");
+  const result = document.getElementById("numResult");
+
+  // One common Pythagorean name-number convention.
+  function getNameNumber(name) {
+    let total = 0;
+    const letters = name.toUpperCase().replace(/[^A-Z]/g, "");
+    for (const letter of letters) {
+      total += ((letter.charCodeAt(0) - 65) % 9) + 1;
+    }
+    return total;
+  }
+
+  function reduceNumber(number) {
+    while (number > 9) {
+      number = String(number).split("")
+        .reduce((sum, digit) => sum + Number(digit), 0);
+    }
+    return number;
+  }
+
+  function sumDigits(value) {
+    return String(value).replace(/\D/g, "").split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+  }
+
+  function show(id, value) {
+    document.getElementById(id).textContent = value;
+  }
+
+  const meanings = {
+    1: "Independence and initiative",
+    2: "Cooperation and sensitivity",
+    3: "Creativity and expression",
+    4: "Structure and practicality",
+    5: "Adaptability and change",
+    6: "Responsibility and harmony",
+    7: "Reflection and learning",
+    8: "Ambition and organization",
+    9: "Compassion and completion"
+  };
+
+  // Traditional associations only; not a personal prescription.
+  const gemstones = {
+    1: ["Ruby (Manik)", "Traditionally associated with the Sun."],
+    2: ["Pearl (Moti)", "Traditionally associated with the Moon."],
+    3: ["Yellow Sapphire (Pukhraj)", "Traditionally associated with Jupiter."],
+    4: ["Hessonite (Gomed)", "Associated with Rahu in some traditions."],
+    5: ["Emerald (Panna)", "Traditionally associated with Mercury."],
+    6: ["Opal or Diamond", "Traditionally associated with Venus."],
+    7: ["Cat's Eye (Lehsunia)", "Associated with Ketu in some traditions."],
+    8: ["Blue Sapphire (Neelam)", "Traditionally associated with Saturn; do not select on DOB alone."],
+    9: ["Red Coral (Moonga)", "Traditionally associated with Mars."]
+  };
+
+  // Traditional Lo Shu grid arrangement.
+  const gridOrder = [4, 9, 2, 3, 5, 7, 8, 1, 6];
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById("numName").value.trim();
+    const dob = document.getElementById("numDob").value;
+
+    if (!name || !dob) {
+      alert("Please enter your name and date of birth.");
+      return;
+    }
+
+    const [year, month, day] = dob.split("-").map(Number);
+    const checkDate = new Date(Date.UTC(year, month - 1, day));
+
+    if (
+      checkDate.getUTCFullYear() !== year ||
+      checkDate.getUTCMonth() !== month - 1 ||
+      checkDate.getUTCDate() !== day
+    ) {
+      alert("Please enter a valid date of birth.");
+      return;
+    }
+
+    if (new Date(Date.UTC(year, month - 1, day)) > new Date()) {
+      alert("Date of birth cannot be in the future.");
+      return;
+    }
+
+    const birthNumber = reduceNumber(day);
+    const lifeNumber = reduceNumber(sumDigits(dob));
+    const nameNumber = reduceNumber(getNameNumber(name));
+
+    show("numGreeting", "Namaste, " + name + "!");
+    show("numDate", "Date of Birth: " + dob);
+    show("birthNumber", birthNumber);
+    show("birthMeaning", meanings[birthNumber]);
+    show("lifeNumber", lifeNumber);
+    show("lifeMeaning", meanings[lifeNumber]);
+    show("nameNumber", nameNumber);
+    show("nameMeaning", meanings[nameNumber]);
+
+    const counts = {};
+    for (let digit = 1; digit <= 9; digit++) counts[digit] = 0;
+
+    for (const character of dob.replace(/\D/g, "")) {
+      const digit = Number(character);
+      if (digit >= 1 && digit <= 9) counts[digit]++;
+    }
+
+    const grid = document.getElementById("loShuGrid");
+    grid.replaceChildren();
+
+    gridOrder.forEach(number => {
+      const cell = document.createElement("div");
+      cell.className = "lo-cell";
+
+      const digit = document.createElement("b");
+      digit.textContent = number;
+
+      const count = document.createElement("span");
+      count.textContent = counts[number] === 0
+        ? "Not present" : "Count: " + counts[number];
+
+      const repeats = document.createElement("em");
+      repeats.textContent = counts[number] > 1
+        ? Array(counts[number]).fill(number).join(" ") : "";
+
+      cell.append(digit, count, repeats);
+      grid.appendChild(cell);
+    });
+
+    const missing = [];
+    const repeated = [];
+
+    for (let digit = 1; digit <= 9; digit++) {
+      if (counts[digit] === 0) missing.push(digit);
+      if (counts[digit] > 1) repeated.push(digit + " × " + counts[digit]);
+    }
+
+    const report = document.getElementById("digitReport");
+    report.replaceChildren();
+
+    const missingText = document.createElement("p");
+    missingText.textContent = "Digits not present: " +
+      (missing.join(", ") || "None");
+
+    const repeatedText = document.createElement("p");
+    repeatedText.textContent = "Repeated digits: " +
+      (repeated.join(", ") || "None");
+
+    const note = document.createElement("p");
+    note.textContent =
+      "These are digit counts, not proven measures of personality or future outcomes.";
+
+    report.append(missingText, repeatedText, note);
+
+    const gem = gemstones[birthNumber];
+    show("gemName", gem[0]);
+    show("gemReason", gem[1] +
+      " This general association does not confirm personal suitability.");
+
+    const message =
+      "Namaste Vedic Kundali Nivaran Kendra. I would like to enquire about the Rs. 149 consultation." +
+      "\nName: " + name +
+      "\nDOB: " + dob +
+      "\nBirth Number: " + birthNumber +
+      "\nLife Path Number: " + lifeNumber +
+      "\nName Number: " + nameNumber +
+      "\nPlease explain my numerology report and traditional gemstone associations.";
+
+    const whatsappURL =
+      "https://wa.me/918709224478?text=" + encodeURIComponent(message);
+
+    document.getElementById("gemWhatsApp").href = whatsappURL;
+    document.getElementById("detailWhatsApp").href = whatsappURL;
+
+    result.hidden = false;
+    result.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
 </script>
-
-
-<!-- FREE KUNDALI PREVIEW -->
-<section id="free-kundali" style="max-width:650px;margin:40px auto;padding:24px;background:#fff8e9;border:1px solid #d9ad58;border-radius:14px;font-family:Arial;color:#4b1019">
-<h2 style="text-align:center">🔮 Free Janam Kundali</h2>
-<p style="text-align:center">Naam aur Date of Birth bharein.</p>
-<form id="kundaliForm">
-<label>Full Name</label>
-<input id="kName" required placeholder="Apna naam likhein" style="width:100%;padding:12px;margin:8px 0 16px;box-sizing:border-box">
-<label>Date of Birth</label>
-<input id="kDate" type="date" required style="width:100%;padding:12px;margin:8px 0 18px;box-sizing:border-box">
-<button style="width:100%;padding:14px;background:#4b1019;color:white;border:0;border-radius:7px;font-weight:bold">View My Kundali</button>
-</form>
-<div id="kResult" hidden>
-<h3 id="kWelcome"></h3>
-<p id="kDob"></p>
-<p><b>Free Preview:</b></p>
-<div id="kPreview"></div>
-<div style="padding:16px;background:#f1e2c6;border-radius:9px;margin-top:18px">
-<h3>🔒 Unlock Full Kundali Details</h3>
-<p>Lagna, Rashi, Nakshatra, Grah Sthiti, Dasha, Marriage, Career aur detailed Kundali analysis.</p>
-<h2>Consultation: ₹149</h2>
-<a id="kUnlock" style="display:block;text-align:center;background:#218838;color:white;padding:13px;border-radius:7px;text-decoration:none" target="_blank" rel="noopener">Unlock Details on WhatsApp</a>
-</div>
-</div>
-</section>
-<script>
-document.getElementById('kundaliForm').addEventListener('submit',function(e){
-e.preventDefault();
-const n=document.getElementById('kName').value.trim();
-const d=document.getElementById('kDate').value;
-document.getElementById('kWelcome').textContent='Namaste, '+n+'!';
-document.getElementById('kDob').textContent='Date of Birth: '+d;
-document.getElementById('kPreview').innerHTML='<p>1. Name: '+n.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p><p>2. Date of Birth: '+d+'</p><p>3. Detailed planetary analysis</p><p>4. Lagna and Rashi details</p><p>5. Nakshatra analysis</p><p>6. Career and marriage analysis</p><p>7. Dasha and remedies</p><p><b>Baaki detailed report ₹149 consultation par available hai.</b></p>';
-document.getElementById('kUnlock').href='https://wa.me/918709224478?text='+encodeURIComponent('Namaste, mujhe full Kundali consultation chahiye. Name: '+n+', DOB: '+d+'. Consultation fee ₹149.');
-document.getElementById('kResult').hidden=false;
-});
-</script>
-
-
+<!-- END LO SHU GRID + NUMEROLOGY TOOL -->
 
 </body>
 </html>
