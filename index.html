@@ -2175,6 +2175,220 @@ document.getElementById("bookingForm")
 </section>
 <!-- END EXPANDED WEBSITE CONTENT -->
 
+  
+<!-- DAILY PANCHANG: VEDIC KUNDALI NIVARAN KENDRA -->
+<section id="daily-panchang" style="max-width:1000px;margin:35px auto;padding:22px;background:#fffaf0;border:1px solid #d5b568;border-radius:16px;font-family:Arial,sans-serif;color:#38271f;box-sizing:border-box;">
+
+  <style>
+    #daily-panchang * { box-sizing:border-box; }
+    #daily-panchang h2, #daily-panchang h3 { color:#741b25; }
+    #daily-panchang .dp-controls {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:12px;
+      margin:20px 0;
+    }
+    #daily-panchang label { font-weight:bold; }
+    #daily-panchang input,
+    #daily-panchang select {
+      display:block;width:100%;padding:12px;margin-top:7px;
+      border:1px solid #cbbd9c;border-radius:8px;background:white;
+      font-size:15px;
+    }
+    #daily-panchang button {
+      padding:13px 18px;background:#741b25;color:white;
+      border:0;border-radius:8px;font-weight:bold;cursor:pointer;
+    }
+    #daily-panchang .dp-grid {
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+      gap:12px;margin-top:18px;
+    }
+    #daily-panchang .dp-card {
+      background:white;border:1px solid #e6d7b8;border-radius:10px;
+      padding:15px;overflow-wrap:anywhere;
+    }
+    #daily-panchang .dp-card h3 { margin:0 0 8px;font-size:17px; }
+    #daily-panchang .dp-value { font-size:18px;font-weight:bold; }
+    #daily-panchang .dp-note {font-size:13px;line-height:1.7;color:#6b5748;}
+  </style>
+
+  <h2 style="text-align:center;">🪔 Daily Panchang</h2>
+  <p style="text-align:center;line-height:1.7;">
+    Aaj ka Tithi, Nakshatra, Yoga, Karana aur Sunrise/Sunset details dekhein.
+  </p>
+
+  <div class="dp-controls">
+    <div>
+      <label for="dp-city">Select City</label>
+      <select id="dp-city">
+        <option value="patna">Patna</option>
+        <option value="kolkata">Kolkata</option>
+        <option value="delhi">Delhi</option>
+        <option value="mumbai">Mumbai</option>
+        <option value="bangalore">Bengaluru</option>
+        <option value="chennai">Chennai</option>
+        <option value="lucknow">Lucknow</option>
+        <option value="varanasi">Varanasi</option>
+        <option value="jaipur">Jaipur</option>
+        <option value="hyderabad">Hyderabad</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="dp-date">Select Date</label>
+      <input id="dp-date" type="date">
+    </div>
+  </div>
+
+  <button id="dp-load" type="button" style="width:100%;">
+    Show Panchang
+  </button>
+
+  <p id="dp-status" role="status" aria-live="polite" style="margin-top:18px;"></p>
+  <div id="dp-results" class="dp-grid"></div>
+
+  <p class="dp-note">
+    Panchang timings depend on the selected city and date. Patna is an
+    approximate regional option for Samastipur; local sunrise-based timings
+    may differ. Please verify important Muhurat timings with a trusted local
+    Panchang.
+  </p>
+
+  <script>
+  (function () {
+    const city = document.getElementById("dp-city");
+    const date = document.getElementById("dp-date");
+    const button = document.getElementById("dp-load");
+    const status = document.getElementById("dp-status");
+    const results = document.getElementById("dp-results");
+
+    // Use today's date in India (IST).
+    function todayIndia() {
+      const parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Kolkata",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date());
+
+      const get = type => parts.find(p => p.type === type).value;
+      return get("year") + "-" + get("month") + "-" + get("day");
+    }
+
+    date.value = todayIndia();
+
+    function showCard(title, value) {
+      const card = document.createElement("div");
+      card.className = "dp-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = title;
+
+      const content = document.createElement("div");
+      content.className = "dp-value";
+      content.textContent =
+        value === undefined || value === null || value === ""
+          ? "Not available"
+          : String(value);
+
+      card.appendChild(heading);
+      card.appendChild(content);
+      results.appendChild(card);
+    }
+
+    function formatDate(dateValue) {
+      const [year, month, day] = dateValue.split("-").map(Number);
+      return String(day).padStart(2, "0") + "-" +
+             String(month).padStart(2, "0") + "-" + year;
+    }
+
+    function findValue(data, keys) {
+      for (const key of keys) {
+        const value = data[key];
+        if (value !== undefined && value !== null && value !== "") {
+          if (typeof value === "object") {
+            if (value.name) return value.name;
+            if (value.time) return value.time;
+            return JSON.stringify(value);
+          }
+          return value;
+        }
+      }
+      return "Not available";
+    }
+
+    async function loadPanchang() {
+      if (!date.value) {
+        status.textContent = "Please date select karein.";
+        return;
+      }
+
+      if (date.value > todayIndia()) {
+        status.textContent =
+          "Future date ke liye Panchang API ki availability alag se verify karein.";
+      } else {
+        status.textContent = "Panchang load ho raha hai...";
+      }
+
+      results.replaceChildren();
+      button.disabled = true;
+
+      try {
+        const url =
+          "https://api.apimitra.in/panchang?city=" +
+          encodeURIComponent(city.value) +
+          "&date=" + encodeURIComponent(date.value);
+
+        const response = await fetch(url, {
+          method: "GET",
+          headers: { "Accept": "application/json" }
+        });
+
+        if (!response.ok) {
+          throw new Error("Panchang service returned an error.");
+        }
+
+        const data = await response.json();
+
+        if (data.status && data.status !== "ok") {
+          throw new Error("Panchang data is currently unavailable.");
+        }
+
+        const actualDate = data.date || date.value;
+
+        showCard("Selected City", data.city || city.value);
+        showCard("Date", actualDate);
+        showCard("Vaar", findValue(data, ["weekday", "vara", "vaar"]));
+        showCard("Tithi", findValue(data, ["tithi"]));
+        showCard("Paksha", findValue(data, ["paksha"]));
+        showCard("Nakshatra", findValue(data, ["nakshatra"]));
+        showCard("Yoga", findValue(data, ["yoga"]));
+        showCard("Karana", findValue(data, ["karana"]));
+        showCard("Sunrise", findValue(data, ["sunrise", "sun_rise"]));
+        showCard("Sunset", findValue(data, ["sunset", "sun_set"]));
+        showCard("Rahu Kaal", findValue(data, ["rahukaal", "rahu_kaal", "rahu_kalam"]));
+        showCard("Yamaganda", findValue(data, ["yamaganda", "yama_gandam"]));
+        showCard("Gulika Kaal", findValue(data, ["gulika", "gulika_kaal"]));
+
+        status.textContent =
+          "Panchang data load hua. Jo timings API ne provide nahi ki, woh 'Not available' dikhengi.";
+
+      } catch (error) {
+        status.textContent =
+          "Panchang abhi load nahi ho pa raha. Internet connection ya API availability check karein.";
+        console.error("Daily Panchang error:", error);
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    button.addEventListener("click", loadPanchang);
+    loadPanchang();
+  })();
+  </script>
+</section>
+<!-- END DAILY PANCHANG -->
+
 
 </body>
 </html>
