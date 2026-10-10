@@ -1248,17 +1248,9 @@ footer a {
 </div>
 
 <script>
-document.getElementById("year").textContent =
-  new Date().getFullYear();
-
-function selectService(service) {
-  document.getElementById("serviceSelect").value = service;
-}
-
+  
 document.getElementById("bookingForm")
-  ```javascript
-document.getElementById("bookingForm")
-  .addEventListener("submit", function(event) {
+  .addEventListener("submit", function (event) {
     event.preventDefault();
 
     const name = document.getElementById("customerName").value.trim();
@@ -1268,11 +1260,13 @@ document.getElementById("bookingForm")
     const service = document.getElementById("serviceSelect").value;
     const message = document.getElementById("customerMessage").value.trim();
 
+    // Check required fields
     if (!name || !dob || !birthTime || !birthPlace || !service) {
       alert("Please fill in all required fields.");
       return;
     }
 
+    // Prepare the WhatsApp message
     const whatsappMessage =
       "Namaste Vedic Kundali Nivaran Kendra,\n\n" +
       "Name: " + name + "\n" +
@@ -1284,12 +1278,15 @@ document.getElementById("bookingForm")
       "Question: " + (message || "Not provided") + "\n\n" +
       "Please confirm the consultation details.";
 
+    // Encode the message for WhatsApp
     const whatsappURL =
       "https://wa.me/918709224478?text=" +
       encodeURIComponent(whatsappMessage);
 
-    window.open(whatsappURL, "_blank", "noopener");
+    // Open WhatsApp in the current tab
+    window.location.href = whatsappURL;
   });
+
 </script>
 
 
