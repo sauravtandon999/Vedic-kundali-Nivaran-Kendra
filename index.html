@@ -1147,35 +1147,42 @@ footer a {
           Your selection will open a pre-filled WhatsApp message.
         </p>
 
-        <form id="bookingForm">
-          <label for="customerName">Your Name</label>
-          <input id="customerName" required
-                 placeholder="Enter your name">
+        
+<form id="bookingForm">
+  <label for="customerName">Your Name</label>
+  <input id="customerName" type="text" required placeholder="Enter your name">
 
-          <label for="serviceSelect">Select a Service</label>
-          <select id="serviceSelect" required>
-            <option value="">Choose a service</option>
-            <option>Kundali Analysis</option>
-            <option>Lal Kitab Remedies</option>
-            <option>Marriage and Kundali Matching</option>
-            <option>Career and Business Guidance</option>
-            <option>Graha Dosh Consultation</option>
-            <option>Vastu Consultation</option>
-            <option>Gemstone Guidance</option>
-            <option>Puja and Mantra Guidance</option>
-            <option>Personal Astrology Guidance</option>
-          </select>
+  <label for="customerDob">Date of Birth</label>
+  <input id="customerDob" type="date" required>
 
-          <label for="customerMessage">Your Question (Optional)</label>
-          <textarea id="customerMessage"
-                    rows="3"
-                    placeholder="How can we help you?"></textarea>
+  <label for="customerBirthTime">Time of Birth</label>
+  <input id="customerBirthTime" type="time" required>
 
-          <button type="submit" class="btn btn-maroon"
-                  style="width:100%;margin-top:20px">
-            Continue on WhatsApp →
-          </button>
-        </form>
+  <label for="customerBirthPlace">Place of Birth</label>
+  <input id="customerBirthPlace" type="text" required placeholder="Enter city or place of birth">
+
+  <label for="serviceSelect">Select a Service</label>
+  <select id="serviceSelect" required>
+    <option value="">Choose a service</option>
+    <option>Kundali Analysis</option>
+    <option>Lal Kitab Remedies</option>
+    <option>Marriage and Kundali Matching</option>
+    <option>Career and Business Guidance</option>
+    <option>Graha Dosh Consultation</option>
+    <option>Vastu Consultation</option>
+    <option>Gemstone Guidance</option>
+    <option>Puja and Mantra Guidance</option>
+    <option>Personal Astrology Guidance</option>
+  </select>
+
+  <label for="customerMessage">Your Question (Optional)</label>
+  <textarea id="customerMessage" rows="3" placeholder="How can we help you?"></textarea>
+
+  <button type="submit" class="btn btn-maroon" style="width:100%;margin-top:20px">
+    Continue on WhatsApp →
+  </button>
+</form>
+        
       </div>
 
     </div>
@@ -1249,36 +1256,39 @@ function selectService(service) {
 }
 
 document.getElementById("bookingForm")
+  ```javascript
+document.getElementById("bookingForm")
   .addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const name =
-      document.getElementById("customerName").value.trim();
+    const name = document.getElementById("customerName").value.trim();
+    const dob = document.getElementById("customerDob").value;
+    const birthTime = document.getElementById("customerBirthTime").value;
+    const birthPlace = document.getElementById("customerBirthPlace").value.trim();
+    const service = document.getElementById("serviceSelect").value;
+    const message = document.getElementById("customerMessage").value.trim();
 
-    const service =
-      document.getElementById("serviceSelect").value;
-
-    const message =
-      document.getElementById("customerMessage").value.trim();
-
-    if (!name || !service) {
-      alert("Please enter your name and select a service.");
+    if (!name || !dob || !birthTime || !birthPlace || !service) {
+      alert("Please fill in all required fields.");
       return;
     }
 
-    const text =
-      "Namaste Vedic Kundali Nivaran Kendra,%0A%0A" +
-      "My name: " + encodeURIComponent(name) + "%0A" +
-      "Service: " + encodeURIComponent(service) + "%0A" +
-      "Online consultation advertised price: Rs. 399%0A" +
-      "My question: " + encodeURIComponent(message) +
-      "%0A%0APlease share the booking details and confirm the service price.";
+    const whatsappMessage =
+      "Namaste Vedic Kundali Nivaran Kendra,\n\n" +
+      "Name: " + name + "\n" +
+      "Date of Birth: " + dob + "\n" +
+      "Time of Birth: " + birthTime + "\n" +
+      "Place of Birth: " + birthPlace + "\n" +
+      "Selected Service: " + service + "\n" +
+      "Consultation Price: Rs. 399\n" +
+      "Question: " + (message || "Not provided") + "\n\n" +
+      "Please confirm the consultation details.";
 
-    window.open(
-      "https://wa.me/918709224478?text=" + text,
-      "_blank",
-      "noopener"
-    );
+    const whatsappURL =
+      "https://wa.me/918709224478?text=" +
+      encodeURIComponent(whatsappMessage);
+
+    window.open(whatsappURL, "_blank", "noopener");
   });
 </script>
 
